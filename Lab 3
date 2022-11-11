@@ -1,0 +1,24 @@
+def partation(mylist, low, high):
+    i = low-1
+    pivot = mylist[high]
+    for j in range(low, high):
+        if mylist[j] <= pivot:
+            i += 1
+            mylist[i], mylist[j] = mylist[j], mylist[i]
+        mylist[i+1], mylist[high] = mylist[high], mylist[i+1]
+        return i+1
+
+
+def quick_short(mylist, low, high):
+    if low < high:
+        part = partation(mylist, low, high)
+        quick_short(mylist, low, part-1)
+        quick_short(mylist, part, high)
+
+
+if __name__ == '__main__':
+    mylist = [2, 4, 9, 6,8, 5]
+    print(f"Unshorted arry is {mylist}")
+    size= len(mylist)-1
+    quick_short(mylist, 0,size)
+    print(f"Shorted arry is {mylist}")
