@@ -1,0 +1,41 @@
+def mergeSort(array):
+    if len(array) > 1:
+        T = len(array)//2
+        Left = array[:T]
+        Right= array[T:]
+        mergeSort(Left)
+        mergeSort(Right)
+
+        i = j = k = 0
+
+        while i < len(Left) and j < len(Right):
+            if Left[i] < Right[j]:
+                array[k] = Left[i]
+                i += 1
+            else:
+                array[k] = Right[j]
+                j += 1
+            k += 1
+
+        while i < len(Left):
+            array[k] = Left[i]
+            i += 1
+            k += 1
+
+        while j < len(Right):
+            array[k] = Right[j]
+            j += 1
+            k += 1
+
+def printList(array):
+    for i in range(len(array)):
+        print(array[i], end=" ")
+    print()
+
+if __name__ == '__main__':
+    array = [28,45,3,62,632,84,77,90]
+
+    mergeSort(array)
+
+    print("Sorted array is: ")
+    printList(array)
